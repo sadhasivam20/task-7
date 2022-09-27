@@ -1,0 +1,30 @@
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+
+
+request.onload=function(){
+    var res=JSON.parse(request.response);
+    console.log(res);
+
+    //use filter to find the country ASIA
+
+    var result=res.filter((ele)=>ele.region=="Asia");
+    console.log(result);
+
+    //use filter to find less than 2 lakhs population
+
+    var population=res.filter((ele)=>ele.population<200000);
+    console.log(population);
+    var value=population.map((ele)=>`${ele.name}`);
+    console.log(value);
+
+    // use to print the total population of all the countries
+
+    var res1=res.reduce((acc,cv)=>acc+cv.population,0);
+console.log(res1);
+
+    // use to print us dollar as currency
+
+    var a=res.filter((ele)=>ele.currencies ==" US Dollars");
+    console.log(a);
